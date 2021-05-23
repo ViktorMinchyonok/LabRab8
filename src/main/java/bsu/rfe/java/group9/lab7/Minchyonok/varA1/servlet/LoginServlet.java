@@ -88,7 +88,7 @@ public class LoginServlet extends ChatServlet {
 	pw.println("</form></body></html>");
 	// Сбросить сообщение об ошибке в сессии
 	request.getSession().setAttribute("error", null);
-	
+	System.out.println("End of initialization !!!");
 }
 
 // Метод будет вызван при обращении к сервлету HTTP-методом POST
@@ -107,7 +107,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		// Пустое имя недопустимо - сообщить об ошибке
 		errorMessage = "Имя пользователя не может быть пустым!";
 	} else {
-		// Если ия не пустое, то попытаться обработать запрос
+		// Если имя не пустое, то попытаться обработать запрос
 		errorMessage = processLogonAttempt(name, request, response);
 	}
 
