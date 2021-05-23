@@ -41,8 +41,7 @@ public class LoginServlet extends ChatServlet {
 	// Если в сессии имя не сохранено, то попытаться 
 	// восстановить имя через cookie
 	if (name==null) {
-
-		
+		if (request.getCookies() != null) {
 			// Найти cookie с именем sessionId
 			for (Cookie aCookie : request.getCookies()) {
 				if (aCookie.getName().equals("sessionId")) {
@@ -51,7 +50,7 @@ public class LoginServlet extends ChatServlet {
 					previousSessionId = aCookie.getValue();
 					break;
 				}
-			
+			}
 		}
 		if (previousSessionId != null) {
 			// Мы нашли session cookie
@@ -60,7 +59,7 @@ public class LoginServlet extends ChatServlet {
 				if (aUser.getSessionId().equals(previousSessionId)) {
 					// Мы нашли такого, т.е. восстановили имя
 					name = aUser.getName();
-					User.setSessionId(request.getSession().getId());
+					aUser.setSessionId(request.getSession().getId());
 				}
 			}
 		}
