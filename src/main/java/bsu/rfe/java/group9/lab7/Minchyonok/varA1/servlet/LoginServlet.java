@@ -37,6 +37,7 @@ public class LoginServlet extends ChatServlet {
 	(String)request.getSession().getAttribute("error");
 	// Идентификатор предыдущей сессии изначально пуст
 	String previousSessionId = null;
+	System.out.println("Request " + request + "  cookies " + request.getCookies());
 	// Если в сессии имя не сохранено, то попытаться 
 	// восстановить имя через cookie
 	if (name==null) {
